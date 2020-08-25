@@ -11,13 +11,13 @@
 }
 
 .App-header {
-  font-size: calc(45px + 2vmin);
+  font-size: calc(50px + 2vmin);
   font-weight: 200;
   color: white;
   font-family: 'Do Hyeon', sans-serif;
 }
 .App-header #with{
-  font-size: 20px;
+  font-size: 15px;
   font-family: 'Source Code Pro', monospace;
 } 
 .App-header #react{
@@ -26,11 +26,34 @@
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: calc(20px + 1vmin);
+  font-size: calc(15px + 1vmin);
   font-weight: 400;
   color:#61dafb;
 }
 
 #display {
-  color: white;
+  color: white; 
+  font-family: 'Monda', sans-serif;
+  font-size: 40px;
+}
+.container{
+  font-family: 'Alata', sans-serif;
+}
+.key{
+  background-color: inherit!important;
+  font-size: 30px!important;
+  height: 2em;
+  border: 2px solid #007bff!important;
+}
+.functions{
+  /* padding: 0!important; */
+}
+.all{
+  min-width: 400px;
+  width: 600px;
+}
+#parent{
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
 }

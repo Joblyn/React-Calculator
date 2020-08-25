@@ -10,7 +10,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      result: "0"
+      result: "0",
+      addClass : 'false'
     }
     
     this.clickHandler = this.clickHandler.bind(this);
@@ -36,6 +37,18 @@ class App extends React.Component {
         this.setState ({
           result : button
         })
+      } 
+      else if(this.state.addClass && !isNaN(parseInt(button, 10))) {
+        this.setState ({
+          result: button,
+          addClass: !this.state.addClass
+        })
+      } 
+      else if(this.state.addClass && (button == '*' || button == '+' || button == '-' || button === '/')) {
+        this.setState({
+          result: this.state.result + button,
+          addClass: !this.state.addClass
+        })
       }
       else{
         this.setState({
@@ -47,6 +60,9 @@ class App extends React.Component {
   
   // when "=" is clicked
   calculate() {
+    this.setState({
+      addClass: !this.state.addClass
+    })
     // check for error and evaluate
     try {
       this.setState({
@@ -76,6 +92,7 @@ class App extends React.Component {
           result: '0'
         })
       } else {
+        console.log('got here');
           this.setState ({
           result : this.state.result.slice(0, -1)
         }) 
@@ -84,17 +101,21 @@ class App extends React.Component {
   
 
   render(){
+
     return (
-      <div className="App container-fluid">
+      <div className="App container-fluid"> 
         <header className="App-header">
           Calculator <span id="with">with</span><span id="react">     ReactJs</span> 
         </header>
-        <div>
-          <ResultComponent result={this.state.result}/> 
-          <Keypad clickHandler={this.clickHandler}/>
+        <div id="parent">
+          <div className="all">
+            <ResultComponent result={this.state.result}/> 
+            <Keypad clickHandler={this.clickHandler}/>
+          </div>
         </div>
       </div>
     );
+
   }
 }
 export default App;
