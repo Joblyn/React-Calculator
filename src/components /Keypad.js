@@ -48,7 +48,7 @@ const Keypad = ({ clickHandler }) => {
           <div className = "col operations col-3">
             
               <Button className="key col-12 operator" id="divide" name="/" onClick={e => clickHandler(e.target.name)}>/</Button>
-              <Button className="key col-12 operator" id="multiply" name="*" onClick={e => clickHandler(e.target.name)}>*</Button>
+              <Button className="key col-12 operator" id="multiply" name="*" onClick={e => clickHandler(e.target.name)}>X</Button>
               <Button className="key col-12 operator" id="subtract" name="-" onClick={e => clickHandler(e.target.name)}>-</Button>
               <Button className="key col-12 operator" id="add" name="+" onClick={e => clickHandler(e.target.name)}>+</Button>
             

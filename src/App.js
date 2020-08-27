@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Keypad from './components /Keypad';
 import ResultComponent from "./components /Result";
+// import { getRoles } from '@testing-library/react';
 
 class App extends React.Component {
 
@@ -34,26 +35,38 @@ class App extends React.Component {
     }
     else {
       if ((this.state.result === '0') || (this.state.result === 'Error')) {
+        console.log('1');
         this.setState ({
-          result : button
+          result : button,
+          addClass: 'false'
         })
       } 
-      else if(this.state.addClass && !isNaN(parseInt(button, 10))) {
+      else if(this.state.addClass === 'true' && !isNaN(parseInt(button, 10))) {
+        console.log('2');
         this.setState ({
           result: button,
-          addClass: !this.state.addClass
+          addClass: 'false'
         })
-      } 
-      else if(this.state.addClass && (button == '*' || button == '+' || button == '-' || button === '/')) {
+      } else if(this.state.addClass === 'true' && (button === '*' || button === '+' || button === '-' || button === '/')) {
+        console.log('3');
         this.setState({
           result: this.state.result + button,
-          addClass: !this.state.addClass
+          addClass: 'false'
         })
       }
-      else{
-        this.setState({
-        result : this.state.result + button
-        }) 
+      else{ 
+        console.log('4');
+        if(button === '.' && this.state.result.includes('.')){
+          console.log('4a');
+          this.setState({
+            result: this.state.result
+          })
+        } else {
+          console.log('4b');
+          this.setState({
+          result : this.state.result + button
+          }) 
+        }
       }
     }
   }
@@ -61,15 +74,17 @@ class App extends React.Component {
   // when "=" is clicked
   calculate() {
     this.setState({
-      addClass: !this.state.addClass
+      addClass: 'true'
     })
     // check for error and evaluate
-    try {
-      this.setState({
-        // eslint-disable-next-line 
-        result: (eval(this.state.result) || '0')
-      }) 
-    } 
+    const calc = ()=>{
+      // eslint-disable-next-line 
+     let res = (eval(this.state.result));
+     this.setState({result : (res.toString() || '0')})
+     }
+   try {
+      calc()
+    }
     // if error occurs, return error
     catch {
       this.setState({
@@ -88,11 +103,16 @@ class App extends React.Component {
   // when 'backspace' is clicked, remove last element
     backspace() {
       if (this.state.result.length === 1) {
+        console.log('5');
         this.setState({
           result: '0'
         })
+      } else if(this.state.addClass === 'true'){
+        this.setState({
+          result: this.state.result
+        })
       } else {
-        console.log('got here');
+        console.log('6');
           this.setState ({
           result : this.state.result.slice(0, -1)
         }) 
