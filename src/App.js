@@ -3,7 +3,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Keypad from './components /Keypad';
 import ResultComponent from "./components /Result";
-// import { getRoles } from '@testing-library/react';
 
 class App extends React.Component {
 
@@ -35,34 +34,28 @@ class App extends React.Component {
     }
     else {
       if ((this.state.result === '0') || (this.state.result === 'Error')) {
-        console.log('1');
         this.setState ({
           result : button,
           addClass: 'false'
         })
       } 
       else if(this.state.addClass === 'true' && !isNaN(parseInt(button, 10))) {
-        console.log('2');
         this.setState ({
           result: button,
           addClass: 'false'
         })
       } else if(this.state.addClass === 'true' && (button === '*' || button === '+' || button === '-' || button === '/')) {
-        console.log('3');
         this.setState({
           result: this.state.result + button,
           addClass: 'false'
         })
       }
       else{ 
-        console.log('4');
         if(button === '.' && this.state.result.includes('.')){
-          console.log('4a');
           this.setState({
             result: this.state.result
           })
         } else {
-          console.log('4b');
           this.setState({
           result : this.state.result + button
           }) 
@@ -124,15 +117,15 @@ class App extends React.Component {
 
     return (
       <div className="App container-fluid"> 
-        <header className="App-header">
-          Calculator <span id="with">with</span><span id="react">     ReactJs</span> 
-        </header>
-        <div id="parent">
-          <div className="all">
-            <ResultComponent result={this.state.result}/> 
-            <Keypad clickHandler={this.clickHandler}/>
-          </div>
-        </div>
+          <header className="App-header">
+            Calculator <span id="with">with</span><span id="react">     ReactJs</span> 
+          </header>
+          <div id="parent">
+            <div className="all">
+              <ResultComponent result={this.state.result}/> 
+              <Keypad clickHandler={this.clickHandler}/>
+            </div>
+          </div> 
       </div>
     );
 
